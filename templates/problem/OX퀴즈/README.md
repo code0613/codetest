@@ -17,8 +17,9 @@ X, Y, Z는 0을 제외하고는 0으로 시작하지 않습니다.
 
 ``` java
 class Solution {
-    public List<String> solution(String[] quiz) {
-        List<String> answer = new ArrayList<>();
+    public String[] solution(String[] quiz) {
+        String[] answer = new String[quiz.length];
+
         for (int i = 0; i < quiz.length; i++) {
             int X = Integer.parseInt(quiz[i].split(" ")[0]);
             int Y = Integer.parseInt(quiz[i].split(" ")[2]);
@@ -31,13 +32,11 @@ class Solution {
             int result = Integer.parseInt(quiz[i].split(" ")[4]);
 
             if (num == result){
-                answer.add("O");
-            }else answer.add("X");
+            answer[i] = "O";
+            }else answer[i] = "X";
         }
-        return answer;
-    }
+    return answer;
+    }   
 }
 ```
 ## 문제점
-
-기존 자료구조로 복원 필요

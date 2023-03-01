@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
 class Solution {
-    public List<String> solution(String[] quiz) {
-        List<String> answer = new ArrayList<>();
+    public String[] solution(String[] quiz) {
+        String[] answer = new String[quiz.length];
+
         for (int i = 0; i < quiz.length; i++) {
             int X = Integer.parseInt(quiz[i].split(" ")[0]);
             int Y = Integer.parseInt(quiz[i].split(" ")[2]);
@@ -15,9 +14,9 @@ class Solution {
             int result = Integer.parseInt(quiz[i].split(" ")[4]);
 
             if (num == result){
-                answer.add("O");
-            }else answer.add("X");
+            answer[i] = "O";
+            }else answer[i] = "X";
         }
-        return answer;
-    }
+    return answer;
+    }   
 }
