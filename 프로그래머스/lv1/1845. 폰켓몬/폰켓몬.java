@@ -11,11 +11,6 @@ class Solution {
             integerSet.add(nums[i]);
         }
         
-        if (integerSet.size() > nums.length/2) {
-            answer = nums.length/2;
-        } else {
-            answer = integerSet.size();
-        }
-        return answer;
+        return (integerSet.size() > nums.length/2) ? nums.length/2 : integerSet.size();
     }
 }
