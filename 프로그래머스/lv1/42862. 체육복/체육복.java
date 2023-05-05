@@ -1,27 +1,29 @@
 import java.util.*;
 import java.util.stream.*;
 class Solution {
-    public int solution(int n, int[] lost, int[] reserve) {
-        //교집합 제거를 위한 교집합 생성
-        Set<Integer> realReserve, realLost, retainSet;
+public int solution(int n, int[] lost, int[] reserve) {
+int[] student = new int[n+2];
+        int answer = n;
 
-        realReserve = Arrays.stream(reserve).boxed().collect(Collectors.toSet());
-        realLost = Arrays.stream(lost).boxed().collect(Collectors.toSet());
+        for (int i = 0; i < lost.length; i++) {
+            student[lost[i]-1]--;
+        }
+        for (int i = 0; i < reserve.length; i++) {
+            student[reserve[i]-1]++;
+        }
 
-        retainSet = new HashSet<>(realReserve);
-        retainSet.retainAll(realLost);
-
-
-        realReserve.removeAll(retainSet);
-        realLost.removeAll(retainSet);
-
-        //이 부분에서 if문의 순서가 바뀌면 어떻게 될지 생각해 보세요.
-        for (int r : realReserve)
-            if (realLost.contains(r - 1))
-                realLost.remove(r - 1);
-            else if (realLost.contains(r + 1))
-                realLost.remove(r + 1);
-
-        return n - realLost.size();
+        for (int i = 0; i < student.length; i++) {
+            if(student[i] == -1) {
+               if(i-1>=0 && student[i-1] == 1) {
+                    student[i]++;
+                    student[i-1]--;
+               }else if(i+1< student.length && student[i+1] == 1) {
+                    student[i]++;
+                    student[i+1]--;
+                }else
+                    answer--;
+            }
+        }
+        return answer;
     }
 }
