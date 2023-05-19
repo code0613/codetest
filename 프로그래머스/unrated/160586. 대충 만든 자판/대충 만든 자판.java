@@ -3,30 +3,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
-    public int[] solution(String[] keymap, String[] targets) {
-        int[] answer = new int[targets.length];
+   public int[] solution(String[] keymap, String[] targets) {
+         int[] answer = new int[targets.length];
 
-        Map<Character,Integer> map = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < keymap.length; i++) {
 
-        for(String key : keymap){
+            String str = keymap[i];
+            for (int j = 0; j < str.length(); j++) {
 
-            for(int i = 0; i < key.length(); i++){
+                char c = str.charAt(j);
+                int index = str.indexOf(c) + 1;
 
-                char c = key.charAt(i);
-
-                int index = map.getOrDefault(c,i+1);
-
-                map.put(c,Math.min(index, i+1));
+                if (map.containsKey(c)) {
+                    if (map.get(c) > index);
+                    map.put(c, index);
+                } else {
+                    map.put(c, index);
+                }
             }
         }
 
-        for(int i = 0; i < targets.length; i++){
-            for(int j = 0; j < targets[i].length(); j++){
-                char c = targets[i].charAt(j);
+        for (int i = 0; i < targets.length; i++) {
 
-                if(map.containsKey(c)){
+            String str = targets[i];
+            for (int j = 0; j < str.length(); j++) {
+
+                char c = str.charAt(j);
+
+                if (map.containsKey(c)) {
                     answer[i] += map.get(c);
-                }else{
+                } else {
                     answer[i] = -1;
                     break;
                 }
